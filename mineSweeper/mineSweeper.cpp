@@ -23,15 +23,15 @@ void mineField();
 void mineField(bool showBombs);
 int amountOfBoom(int x, int y);
 
-char list[20][20];
-char bombList[20][20];
+char list[26][26];
+char bombList[26][26];
 
-char xAxis[] = { "ABCDEFGHIJKLMNOPQRST" };
+char xAxis[] = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ" };
 
-int rowCounter[20];
+int rowCounter[26];
 
 int firstNumber = 0;
-int lastNumber = 20;
+int lastNumber = 30;
 int firstRandomNumber = 0;
 int secondRandomNumber = 0;
 
@@ -48,9 +48,9 @@ int main()
 	enableColors();
 	srand(time(NULL));
 	start:
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 26; i++)
 	{
-		for (int x = 0; x < 20; x++)
+		for (int x = 0; x < 26; x++)
 		{
 			bombList[i][x] = '.';
 		}
@@ -62,9 +62,9 @@ int main()
 		secondRandomNumber = rand() % (lastNumber - firstNumber + 1) + firstNumber;
 		//cout << firstRandomNumber << " - " << secondRandomNumber << "\n";
 
-		for (int i = 0; i < 20; i++)
+		for (int i = 0; i < 26; i++)
 		{
-			for (int x = 0; x < 20; x++)
+			for (int x = 0; x < 26; x++)
 			{
 				list[i][x] = '.';
 				if (firstRandomNumber == i && secondRandomNumber == x)
@@ -111,7 +111,7 @@ int main()
 
 			inputYCord = stoi(YCordsString);
 
-			for (int i = 0; i < 20; i++)
+			for (int i = 0; i < 26; i++)
 			{
 				if (xAxis[i] == charXCord)
 				{
@@ -124,7 +124,7 @@ int main()
 				cout << "Plesae input a valid coordinate with both X and Y coordinates\n";
 				goto field;
 			}
-			inputYCord = 20 - inputYCord;
+			inputYCord = 26 - inputYCord;
 
 			int gurPur = amountOfBoom(inputXCord, inputYCord);
 
@@ -174,15 +174,15 @@ int main()
 			
 		}
 	}
-	cout << "Cords x:" << secondRandomNumber + 1 << " Cords y: " << 20 - firstRandomNumber;
+	cout << "Cords x:" << secondRandomNumber + 1 << " Cords y: " << 26 - firstRandomNumber;
 }
 
 void mineField(bool showBombs)
 {
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 26; i++)
 	{
-		cout << (20 - i) << (i <= 10 ? "   " : "    ");
-		for (int x = 0; x < 20; x++)
+		cout << (26 - i) << (i <= 26-10 ? "   " : "    ");
+		for (int x = 0; x < 26; x++)
 		{
 			if (showBombs && bombList[i][x] == 'B') {
 				cout << "\u001b[36mB " << "\u001b[37m";
@@ -239,7 +239,7 @@ void mineField()
 
 int amountOfBoom(int x, int y)
 {
-	if (x >= 20 || y >= 20 || x < 0 || y < 0)
+	if (x >= 26 || y >= 26 || x < 0 || y < 0)
 	{
 		return -1;
 	}
@@ -250,10 +250,10 @@ int amountOfBoom(int x, int y)
 	int numberOfBombs = 0;
 	for (int ix = x - 1; ix <= x + 1; ix++) 
 	{
-		if (ix < 0 || ix >= 20) continue;
+		if (ix < 0 || ix >= 26) continue;
 		for (int iy = y - 1; iy <= y + 1; iy++)
 		{
-			if (iy < 0 || iy >= 20) continue;
+			if (iy < 0 || iy >= 26) continue;
 			if (bombList[iy][ix] == 'B')
 			{
 				numberOfBombs++;
