@@ -86,11 +86,12 @@ int main()
 			mineField();
 			cout << "\n\n";
 			string inputCoords = "A17";
-			char charXCord;
-			int inputYCord;
+			char charXCord = ' ';
+			int inputYCord = -1;
 			string YCordsString = "";
-			int inputXCord;
+			int inputXCord = -1;
 
+			field:
 			cout << "Enter cordinates: ";
 			cin >> inputCoords;
 
@@ -117,6 +118,11 @@ int main()
 					inputXCord = i;
 					break;
 				}
+			}
+			if (inputXCord == -1 || inputYCord == -1)
+			{
+				cout << "Plesae input a valid coordinate with both X and Y coordinates\n";
+				goto field;
 			}
 			inputYCord = 20 - inputYCord;
 
