@@ -47,7 +47,7 @@ int main()
 {
 	enableColors();
 	srand(time(NULL));
-
+	start:
 	for (int i = 0; i < 20; i++)
 	{
 		for (int x = 0; x < 20; x++)
@@ -57,7 +57,7 @@ int main()
 	}
 
 	for (int a = 0; a < 30; a++)
-	{ 
+	{
 		firstRandomNumber = rand() % (lastNumber - firstNumber + 1) + firstNumber;
 		secondRandomNumber = rand() % (lastNumber - firstNumber + 1) + firstNumber;
 		//cout << firstRandomNumber << " - " << secondRandomNumber << "\n";
@@ -74,7 +74,6 @@ int main()
 			}
 		}
 	}
-	start:
 	string menu;
 	cout << "[P]lay\n[E]xit\nEnter option: ";
 	cin >> menu;
